@@ -1,0 +1,11 @@
+FROM kevinji/alpine-jre
+MAINTAINER Kharis Jiravaranunt <kharisvar@gmail.com>
+RUN mkdir -p /opt/services
+ADD binaries/kafka_2.12-1.1.0.tgz /opt/services
+#Define Docker Image's Properties
+#VOLUME [/opt/services/kafka]
+ENV KAFKA_HOME /opt/services/kafka_2.12-1.1.0
+ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk/jre
+EXPOSE 9092 2181
+WORKDIR $KAFKA_HOME
+CMD ["sh","/opt/services/kafka_2.12-1.1.0/bin/kafka-server-start.sh","/opt/services/kafka_2.12-1.1.0/config/server.properties"]

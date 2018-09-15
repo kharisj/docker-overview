@@ -1,0 +1,10 @@
+FROM kevinji/alpine-jre
+MAINTAINER Kharis Jiravaranunt <kharisvar@gmail.com>
+RUN mkdir -p /opt/services
+#COPY application/app2/target/app2-1.0-SNAPSHOT.jar /opt/services/java-app.jar
+#RUN chmod +x /opt/services/java-app.jar
+#Define Docker Image's Properties
+WORKDIR /opt/services
+#ENTRYPOINT ["java", "-jar", "/opt/services/*.jar"]
+#CMD ["java", "-jar", "/opt/services/app2.jar"]
+CMD ["java", "-jar", "/opt/services/java-app.jar"]

@@ -1,0 +1,15 @@
+FROM kevinji/alpine-jre
+MAINTAINER Kharis Jiravaranunt <kharisvar@gmail.com>
+RUN mkdir -p /opt/services
+ADD scripts/java-runner-startup.sh /startup.sh
+RUN chmod +x /startup.sh
+COPY application/app1/target/app1-1.0-SNAPSHOT.jar /opt/services/java-app.jar
+RUN chmod +x /opt/services/java-app.jar
+#Define Docker Image's Properties
+VOLUME /opt/services
+WORKDIR /opt/services
+#ENTRYPOINT ["java", "-jar /opt/services/*.jar"]
+ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk/jre
+EXPOSE 4567 8090
+CMD /bin/sh /startup.sh
+#CMD ["java", "-jar", "/opt/services/*.jar"]
